@@ -19,7 +19,7 @@ class App {
   }
 
   config() {
-    this.app.set('port', 3000);
+    this.app.set('port', 3001);
   }
 
   middleware() {
