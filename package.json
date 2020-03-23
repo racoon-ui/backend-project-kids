@@ -12,7 +12,7 @@
     "dev": "npm run check-types && cross-env NODE_ENV=development ts-node ./src/index.ts",
     "prod": "npm run build && pm2 start processes.json --env production --no-daemon",
     "clean": "rimraf ./dist",
-    "start": "npm run build:prod && node dist/index",
+    "start": "npm run build:js && node dist/index",
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:prod": "webpack --mode=production --config webpack.config.ts",
