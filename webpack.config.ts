@@ -17,6 +17,13 @@ module.exports = {
   externals: [nodeExternals()],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@middlewares': path.resolve(__dirname, 'src/middlewares'),
+      '@config': path.resolve(__dirname, 'src/config'),
+    },
   },
   output: {
     filename: 'bundle.js',
