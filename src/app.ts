@@ -12,15 +12,9 @@ class App {
 
   constructor() {
     this.app = express();
-    this.config();
     this.middleware();
     this.routes();
     this.database();
-  }
-
-  config() {
-    this.app.set('host', '0.0.0.0');
-    this.app.set('port', 3000);
   }
 
   middleware() {
@@ -36,7 +30,7 @@ class App {
   }
 
   start() {
-    this.app.listen(this.app.get('port'), this.app.get('host'), () => {
+    this.app.listen(process.env.PORT || 3000, () => {
       console.log('Express server listening at', this.app.get('port'));
     });
   }
