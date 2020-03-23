@@ -1,0 +1,10 @@
+.vscode/
+.nyc_output/
+node_modules/
+dist/
+.coveralls.yml
+coverage
+doc/
+package.lock
+.env
+dump.rdb
