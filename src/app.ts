@@ -19,7 +19,8 @@ class App {
   }
 
   config() {
-    this.app.set('port', 5000);
+    this.app.set('host', '0.0.0.0');
+    this.app.set('port', 3000);
   }
 
   middleware() {
@@ -35,7 +36,7 @@ class App {
   }
 
   start() {
-    this.app.listen(this.app.get('port') || 5000, () => {
+    this.app.listen(this.app.get('port'), this.app.get('host'), () => {
       console.log('Express server listening at', this.app.get('port'));
     });
   }
