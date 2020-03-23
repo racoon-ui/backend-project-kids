@@ -49,6 +49,10 @@ $ npm run dev
 
 ```
 
+### Postman API Collection 사용
+
+[Postman API Doc](https://documenter.getpostman.com/view/1265041/SzS8sQV6?version=latest) 을 참고하시면 샘플 api document 를 확인할 수 있습니다. 만약, 본인이 postman 을 설치하여 사용해 봤다면, 프로젝트 Root Directory 에 있는 `pilot_store.postman_collection.json` 파일을 postman 에서 import 하여 사용하면 더욱 편리하게 테스트해 보실 수 있습니다.
+
 ### 프로젝트 정보
 
 이 프로젝트는 프론트엔드 분들도 관심이 있다면 코드를 보고 이해할 수 있도록 다음과 같은 기술을 이용하여 제작했습니다.
@@ -59,7 +63,3 @@ $ npm run dev
 - Typescript
 - MongoDB
 - Redis
-
-### Postman API Collection 사용
-
-[Postman API Doc](https://documenter.getpostman.com/view/1265041/SzS8sQV6?version=latest) 을 참고하시면 샘플 api document 를 확인할 수 있습니다. 만약, 본인이 postman 을 설치하여 사용해 봤다면, 프로젝트 Root Directory 에 있는 `pilot_store.postman_collection.json` 파일을 postman 에서 import 하여 사용하면 더욱 편리하게 테스트해 보실 수 있습니다.
