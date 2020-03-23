@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "express",
+    "restapi",
+    "mongodb",
+    "redis"
+  ],
   "author": "",
   "license": "ISC",
   "scripts": {
