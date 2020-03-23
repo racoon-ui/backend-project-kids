@@ -45,7 +45,7 @@ $ git clone https://github.com/racoon-ui/backend-project-kids.git
 $ cd backend-project-kids
 $ npm install
 $ docker-compose up -d
-\$ npm run dev
+$ npm run dev
 
 ```
 
