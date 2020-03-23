@@ -6,30 +6,33 @@
 
 ```
 1. Authenticate & Authorization
-  - 로그인
-  - 회원가입
-  - JWT (Json Web Token)
+  - [x] 로그인
+  - [x] 회원가입
+  - [x] JWT (Json Web Token)
+
 2. 지점정보 관리
-  - 지점관리 (리스트 / 검색 / 등록 / 삭제)
-    - 지점명
-    - 주소
-    - 전화번호
-    - 영업시간
-    - 특징
-    - latitude
-    - longitude
+  - [x] 지점관리 (리스트 / 검색 / 등록 / 삭제)
+    - [x] 지점명
+    - [x] 주소
+    - [x] 전화번호
+    - [x] 영업시간
+    - [x] 특징
+    - [x] latitude
+    - [x] longitude
+
 3. 상품관리
-  - 카테고리 관리
-  - 상품관리 (리스트 / 검색 / 등록 / 삭제)
-    - 이미지
-    - 상품명
-    - 가격
-    - 판매유무
-    - 간략설명
-    - 상세설명
+  - [x] 카테고리 관리
+  - [x] 상품관리 (리스트 / 검색 / 등록 / 삭제)
+    - [x] 이미지
+    - [x] 상품명
+    - [x] 가격
+    - [x] 판매유무
+    - [x] 간략설명
+    - [x] 상세설명
+
 4. 빠른상담
-  - 상담신청
-  - 내역은 그냥 DB 에서 보는걸로
+  - [ ] 상담신청
+  - [ ] 내역은 그냥 DB 에서 보는걸로
 ```
 
 ### 설치 및 이용방법
@@ -37,11 +40,13 @@
 프로젝트를 실행하기 위해서는 다음과 같은 순서로 실행하면 됩니다.
 
 ```
+
 $ git clone https://github.com/racoon-ui/backend-project-kids.git
 $ cd backend-project-kids
 $ npm install
 $ docker-compose up -d
-$ npm run dev
+\$ npm run dev
+
 ```
 
 ### 프로젝트 정보
@@ -54,3 +59,7 @@ $ npm run dev
 - Typescript
 - MongoDB
 - Redis
+
+### Postman API Collection 사용
+
+[Postman API Doc](https://documenter.getpostman.com/view/1265041/SzS8sQV6?version=latest) 을 참고하시면 샘플 api document 를 확인할 수 있습니다. 만약, 본인이 postman 을 설치하여 사용해 봤다면, 프로젝트 Root Directory 에 있는 `pilot_store.postman_collection.json` 파일을 postman 에서 import 하여 사용하면 더욱 편리하게 테스트해 보실 수 있습니다.
