@@ -70,15 +70,17 @@ const userSchema: Schema = new Schema(
 userSchema.plugin(uniqueValidator);
 
 userSchema.pre<IUser>('save', function save(next) {
-  const user = this as IUser;
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) return next(err);
-    bcrypt.hash(this.password, salt, null, (err: Error, hash: string) => {
+  if (this.password && this.isModified('password')) {
+    const user = this as IUser;
+    bcrypt.genSalt(10, (err, salt) => {
       if (err) return next(err);
-      user.password = hash;
-      next();
+      bcrypt.hash(this.password, salt, null, (err: Error, hash: string) => {
+        if (err) return next(err);
+        user.password = hash;
+        next();
+      });
     });
-  });
+  }
 });
 
 userSchema.methods = {
