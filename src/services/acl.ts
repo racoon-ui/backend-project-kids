@@ -6,11 +6,7 @@ export const IS_ADMIN: string = 'admin';
 export const IS_USER: string = 'user';
 export const IS_ANONYMOUS: string = 'anonymous';
 
-export const isAuthenticated = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   if (req.headers.authorization) {
     const token = req.headers.authorization.split(' ').pop();
     if (!token) {
