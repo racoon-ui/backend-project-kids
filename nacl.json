@@ -33,7 +33,7 @@
         "action": "allow"
       },
       {
-        "resource": "users/signup",
+        "resource": "users/register",
         "methods": ["POST"],
         "action": "allow"
       },

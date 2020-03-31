@@ -4,7 +4,9 @@ import { HTTPClientError } from '@utils/http-errors';
 export const clientError = (err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof HTTPClientError) {
     console.warn(err);
-    res.status(err.statusCode).send(err.message);
+    res
+      .status(err.statusCode)
+      .json({ status: err.statusCode, success: false, message: err.toString() });
   } else {
     next(err);
   }
