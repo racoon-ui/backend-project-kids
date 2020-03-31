@@ -27,7 +27,7 @@ passport.use(
     async (payload, done) => {
       try {
         const user = await User.findById(payload._id);
-        if (!user) return done(undefined, false);
+        if (!user) return done(undefined, false, { message: 'Invalid auth token' });
         return done(undefined, user.toJSON());
       } catch (e) {
         return done(e, false);
