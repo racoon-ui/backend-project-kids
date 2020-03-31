@@ -54,7 +54,7 @@ export class StoreController {
 
   public async update(req: Request, res: Response, next: NextFunction) {
     try {
-      const store = await Store.findByIdAndUpdate(req.params.id, req.body);
+      const store = await Store.findByIdAndUpdate(req.params.id, req.body, { new: true });
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
       e.status = HTTPStatus.BAD_REQUEST;
