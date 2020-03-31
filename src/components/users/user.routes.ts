@@ -16,6 +16,7 @@ class UserRoutes {
   }
 
   routes() {
+    this.router.get('/', this.userController.index);
     this.router.post('/register', this.userController.create);
     this.router.post('/login', authLocal, this.authController.login);
   }

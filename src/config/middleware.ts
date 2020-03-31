@@ -18,8 +18,8 @@ type MiddlewareDelegate = (app: express.Application) => void;
 
 const middleware: MiddlewareDelegate = (app: express.Application) => {
   app.use(compression());
-  app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
   app.use(passport.initialize());
   app.use(helmet());
   app.use(cors(corsWhiteList));

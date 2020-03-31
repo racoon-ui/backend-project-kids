@@ -20,6 +20,16 @@ export const validation = {
 };
 
 export class UserController {
+  public async index(req: Request, res: Response, next: NextFunction) {
+    try {
+      const stores = await User.find();
+      return res.status(HTTPStatus.OK).json(stores);
+    } catch (e) {
+      e.status = HTTPStatus.BAD_REQUEST;
+      return next(e);
+    }
+  }
+
   public async create(req: Request, res: Response, next: NextFunction) {
     try {
       const user = await User.create(req.body);
@@ -27,7 +37,8 @@ export class UserController {
       return res.status(HTTPStatus.CREATED).json(userToken);
     } catch (e) {
       e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      return res.status(e.status).json({ result: 'error', message: e.toString() });
+      // return next(e);
     }
   }
 

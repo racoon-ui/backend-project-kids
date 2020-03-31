@@ -44,7 +44,8 @@ export class ProductController {
       return res.status(HTTPStatus.CREATED).json(store);
     } catch (e) {
       e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      return res.status(e.status).json({ result: 'error', message: e.toString() });
+      // return next(e);
     }
   }
 
@@ -54,7 +55,8 @@ export class ProductController {
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
       e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      return res.status(e.status).json({ result: 'error', message: e.toString() });
+      // return next(e);
     }
   }
 
@@ -64,7 +66,9 @@ export class ProductController {
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
       e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      return res.status(e.status).json({ result: 'error', message: e.toString() });
+      // e.status = HTTPStatus.BAD_REQUEST;
+      // return next(e);
     }
   }
 }
