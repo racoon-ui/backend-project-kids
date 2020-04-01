@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
 import HTTPStatus from 'http-status';
 import User, { IUser } from './user.model';
+import { HTTP400Error } from '@utils/http-errors';
 
 export const validation = {
   create: {
@@ -36,9 +37,10 @@ export class UserController {
       const userToken = user.toAuthJSON();
       return res.status(HTTPStatus.CREATED).json(userToken);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return res.status(e.status).json({ result: 'error', message: e.toString() });
-      // return next(e);
+      // e.status = HTTPStatus.BAD_REQUEST;
+      // return res.status(e.status).json({ result: 'error', message: e.toString() });
+      // next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 

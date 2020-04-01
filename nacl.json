@@ -1,0 +1,47 @@
+[
+  {
+    "group": "admin",
+    "permissions": [
+      {
+        "resource": "*",
+        "methods": "*",
+        "action": "allow"
+      }
+    ]
+  },
+  {
+    "group": "user",
+    "permissions": [
+      {
+        "resource": "users/*",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "stores/*",
+        "methods": "*",
+        "action": "allow"
+      }
+    ]
+  },
+  {
+    "group": "anonymous",
+    "permissions": [
+      {
+        "resource": "users/login",
+        "methods": ["POST"],
+        "action": "allow"
+      },
+      {
+        "resource": "users/register",
+        "methods": ["POST"],
+        "action": "allow"
+      },
+      {
+        "resource": "*",
+        "methods": ["GET"],
+        "action": "allow"
+      }
+    ]
+  }
+]
