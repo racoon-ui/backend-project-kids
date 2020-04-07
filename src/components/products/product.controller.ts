@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
 import HTTPStatus from 'http-status';
 import Product, { IProduct } from './product.model';
+import { HTTP400Error } from '@utils/http-errors';
 
 export const validation = {
   create: {
@@ -23,8 +24,7 @@ export class ProductController {
       const stores = await Product.find();
       return res.status(HTTPStatus.OK).json(stores);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -33,8 +33,7 @@ export class ProductController {
       const store = await Product.findById(req.params.id);
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -43,9 +42,7 @@ export class ProductController {
       const store = await Product.create(req.body);
       return res.status(HTTPStatus.CREATED).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return res.status(e.status).json({ result: 'error', message: e.toString() });
-      // return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -54,9 +51,7 @@ export class ProductController {
       const store = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return res.status(e.status).json({ result: 'error', message: e.toString() });
-      // return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -65,10 +60,7 @@ export class ProductController {
       const store = await Product.findByIdAndDelete(req.params.id);
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return res.status(e.status).json({ result: 'error', message: e.toString() });
-      // e.status = HTTPStatus.BAD_REQUEST;
-      // return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 }

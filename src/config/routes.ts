@@ -7,6 +7,7 @@ import StoreRoutes from '@components/stores/store.routes';
 import ProductRoutes from '@components/products/product.routes';
 import { isAuthenticated, IS_ANONYMOUS } from '@services/acl';
 import { HTTP404Error } from '@utils/http-errors';
+import { clientError, serverError } from '@utils/error-handler';
 
 class ApiRoutes {
   router: Router;
@@ -42,6 +43,8 @@ class ApiRoutes {
     this.router.all('*', (req: Request, res: Response, next: NextFunction) => {
       next(new HTTP404Error());
     });
+    this.router.use(clientError);
+    this.router.use(serverError);
   }
 }
 

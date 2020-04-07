@@ -7,9 +7,7 @@ import { HTTP400Error } from '@utils/http-errors';
 export const validation = {
   create: {
     body: {
-      email: Joi.string()
-        .email()
-        .required(),
+      email: Joi.string().email().required(),
       password: Joi.string()
         .min(6)
         .regex(/^(?=.*[0-9])(?=.*[a-zA-Z!@#$%^&*])([a-zA-Z!@#?$%^&*0-9]+)$/)
@@ -26,8 +24,7 @@ export class UserController {
       const stores = await User.find();
       return res.status(HTTPStatus.OK).json(stores);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -37,9 +34,6 @@ export class UserController {
       const userToken = user.toAuthJSON();
       return res.status(HTTPStatus.CREATED).json(userToken);
     } catch (e) {
-      // e.status = HTTPStatus.BAD_REQUEST;
-      // return res.status(e.status).json({ result: 'error', message: e.toString() });
-      // next(e);
       next(new HTTP400Error(e.toString()));
     }
   }
@@ -51,8 +45,7 @@ export class UserController {
       const user = await User.findById(id);
       return res.status(HTTPStatus.OK).json(user);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 }

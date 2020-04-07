@@ -2,13 +2,12 @@ import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
 import HTTPStatus from 'http-status';
 import Store, { IStore } from './store.model';
+import { HTTP400Error } from '@utils/http-errors';
 
 export const validation = {
   create: {
     body: {
-      name: Joi.string()
-        .email()
-        .required(),
+      name: Joi.string().email().required(),
       address: Joi.string().required(),
       phone: Joi.string().required(),
       hour: Joi.string().required(),
@@ -27,8 +26,7 @@ export class StoreController {
       const stores = await Store.find();
       return res.status(HTTPStatus.OK).json(stores);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -37,8 +35,7 @@ export class StoreController {
       const store = await Store.findById(req.params.id);
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -47,10 +44,7 @@ export class StoreController {
       const store = await Store.create(req.body);
       return res.status(HTTPStatus.CREATED).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return res.status(e.status).json({ result: 'error', message: e.toString() });
-      // e.status = HTTPStatus.BAD_REQUEST;
-      // return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -59,10 +53,7 @@ export class StoreController {
       const store = await Store.findByIdAndUpdate(req.params.id, req.body, { new: true });
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return res.status(e.status).json({ result: 'error', message: e.toString() });
-      // e.status = HTTPStatus.BAD_REQUEST;
-      // return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 
@@ -71,8 +62,7 @@ export class StoreController {
       const store = await Store.findByIdAndDelete(req.params.id);
       return res.status(HTTPStatus.OK).json(store);
     } catch (e) {
-      e.status = HTTPStatus.BAD_REQUEST;
-      return next(e);
+      next(new HTTP400Error(e.toString()));
     }
   }
 }

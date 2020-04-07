@@ -10,7 +10,7 @@ import cors from 'cors';
 import winstonInstance from './winston';
 import { corsWhiteList } from './whitelist';
 import limiter from '@utils/rate-limit';
-import { clientError, serverError } from '@utils/error-handler';
+// import { clientError, serverError } from '@utils/error-handler';
 
 const isTest: boolean = process.env.NODE_ENV === 'test';
 const isDev: boolean = process.env.NODE_ENV === 'development';
@@ -26,8 +26,8 @@ const middleware: MiddlewareDelegate = (app: express.Application) => {
   app.use(cors(corsWhiteList));
   app.use(methodOverride());
   app.use(limiter);
-  app.use(clientError);
-  app.use(serverError);
+  // app.use(clientError);
+  // app.use(serverError);
   if (isDev && !isTest) {
     app.use(morgan('dev'));
     expressWinston.requestWhitelist.push('body');
