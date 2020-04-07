@@ -19,37 +19,16 @@ class Database {
     const url = this.url;
 
     connection.on('connected', () => {
-      console.log(
-        chalk.yellow.bold(`
-        Mongo Connection Established
-        Mongo URL: ${url}
-      `),
-      );
+      console.log(chalk.yellow.bold(`몽고 DB 가 연결되었습니다. URL: ${url}`));
     });
 
     connection.on('reconnected', () => {
-      console.log(
-        chalk.yellow.bold(`
-        Mongo Connection Reestablished
-        Mongo URL: ${url}
-      `),
-      );
+      console.log(chalk.yellow.bold(`몽고 DB 가 다시 연결되었습니다. URL: ${url}`));
     });
 
     connection.on('disconnected', () => {
-      console.log(
-        chalk.yellow.bold(`
-        Mongo Connection Disconnected
-        Mongo URL: ${url}
-      `),
-      );
-
-      console.log(
-        chalk.yellow.bold(`
-        Trying to reconnect to Mongo ...
-        Mongo URL: ${url}
-      `),
-      );
+      console.log(chalk.yellow.bold(`몽고 DB 연결이 끊어졌습니다. URL: ${url}`));
+      console.log(chalk.yellow.bold(`몽고 DB 에 다시 연결 중입니다... URL: ${url}`));
 
       setTimeout(() => {
         mongoose.connect(url, {
@@ -60,20 +39,11 @@ class Database {
     });
 
     connection.on('close', () => {
-      console.log(
-        chalk.yellow.bold(`
-        Mongo Connection Closed
-        Mongo URL: ${url}
-      `),
-      );
+      console.log(chalk.yellow.bold(`몽고 DB 연결이 끊어졌습니다. URL: ${url}`));
     });
 
     connection.on('error', (error: Error) => {
-      console.log(
-        chalk.yellow.bold(`
-        Mongo Connection ERROR: ${error}
-      `),
-      );
+      console.log(chalk.yellow.bold(`몽고 DB 연결에 오류가 발생되었습니다. 오류: ${error}`));
     });
   }
 
@@ -96,14 +66,9 @@ class Database {
 
       mongoose.connection
         .once('open', () =>
-          console.log(
-            chalk.yellow.bold(`
-            MongoDB is running
-            Mongo URL: ${url}
-          `),
-          ),
+          console.log(chalk.yellow.bold(`몽고 DB 에 연결되었습니다. URL: ${url}`)),
         )
-        .on('error', e => {
+        .on('error', (e) => {
           throw e;
         });
     }
