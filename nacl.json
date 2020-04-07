@@ -21,6 +21,11 @@
         "resource": "stores/*",
         "methods": "*",
         "action": "allow"
+      },
+      {
+        "resource": "products/*",
+        "methods": "*",
+        "action": "allow"
       }
     ]
   },

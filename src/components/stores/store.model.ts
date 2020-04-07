@@ -47,6 +47,9 @@ const storeSchema: Schema = new Schema(
       type: String,
       trim: true,
     },
+    facilities: {
+      type: Array,
+    },
     location: {
       type: pointSchema,
       required: [true, '상점 위치정보는 필수입력 항목입니다'],
