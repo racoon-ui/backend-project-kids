@@ -23,7 +23,7 @@ export class ProductController {
     const { name } = req.query;
 
     try {
-      const stores = await Product.find(name && { name });
+      const stores = await Product.find(name && { name: { $regex: `${name}.*` } });
       return res.status(HTTPStatus.OK).json(stores);
     } catch (e) {
       next(new HTTP400Error(e.toString()));

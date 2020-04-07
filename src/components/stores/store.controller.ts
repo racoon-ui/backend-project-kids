@@ -25,7 +25,7 @@ export class StoreController {
     const { name } = req.query;
 
     try {
-      const stores = await Store.find(name && { name });
+      const stores = await Store.find(name && { name: { $regex: `${name}.*` } });
       return res.status(HTTPStatus.OK).json(stores);
     } catch (e) {
       next(new HTTP400Error(e.toString()));
