@@ -22,8 +22,10 @@ export const validation = {
 
 export class StoreController {
   public async index(req: Request, res: Response, next: NextFunction) {
+    const { name } = req.query;
+
     try {
-      const stores = await Store.find();
+      const stores = await Store.find(name && { name });
       return res.status(HTTPStatus.OK).json(stores);
     } catch (e) {
       next(new HTTP400Error(e.toString()));

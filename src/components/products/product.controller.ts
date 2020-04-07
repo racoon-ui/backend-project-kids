@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import Joi from 'joi';
+import Joi, { string } from 'joi';
 import HTTPStatus from 'http-status';
 import Product, { IProduct } from './product.model';
 import { HTTP400Error } from '@utils/http-errors';
@@ -20,8 +20,10 @@ export const validation = {
 
 export class ProductController {
   public async index(req: Request, res: Response, next: NextFunction) {
+    const { name } = req.query;
+
     try {
-      const stores = await Product.find();
+      const stores = await Product.find(name && { name });
       return res.status(HTTPStatus.OK).json(stores);
     } catch (e) {
       next(new HTTP400Error(e.toString()));
