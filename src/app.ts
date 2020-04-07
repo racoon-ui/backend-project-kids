@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import Database from './config/database';
 import middleware from '@config/middleware';
 import ApiRoutes from '@config/routes';
@@ -15,6 +16,7 @@ class App {
     this.middleware();
     this.routes();
     this.database();
+    this.post();
   }
 
   private middleware() {
@@ -27,6 +29,12 @@ class App {
 
   private database() {
     Database.bootstrap().run();
+  }
+
+  private post() {
+    this.app.get('/robots.txt', (_, res) => {
+      res.sendFile(path.join(__dirname, './static', 'robots.txt'));
+    });
   }
 
   public start() {
