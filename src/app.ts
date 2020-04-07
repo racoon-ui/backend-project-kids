@@ -4,7 +4,7 @@ import middleware from '@config/middleware';
 import ApiRoutes from '@config/routes';
 
 class App {
-  private app: express.Application;
+  readonly app: express.Application;
 
   public static bootstrap(): App {
     return new App();
@@ -17,19 +17,19 @@ class App {
     this.database();
   }
 
-  middleware() {
+  private middleware() {
     middleware(this.app);
   }
 
-  routes() {
+  private routes() {
     this.app.use('/api', ApiRoutes.bootstrap().router);
   }
 
-  database() {
+  private database() {
     Database.bootstrap().run();
   }
 
-  start() {
+  public start() {
     this.app.listen(process.env.PORT || 3000, () => {
       console.log('Express server listening at', this.app.get('port'));
     });
